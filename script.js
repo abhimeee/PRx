@@ -6,6 +6,10 @@ const formConfig = {
   },
 };
 
+const prxSiteConfig = {
+  url: "https://6ef0-121-242-131-242.ngrok-free.app",
+};
+
 const visitorCountConfig = {
   key: "prx-landing-visits",
   storageKey: "prx-landing-counted",
@@ -415,6 +419,7 @@ if (visitorCountValue) {
 }
 
 const refs = {
+  prxSiteLink: document.getElementById("prx-site-link"),
   repoCount: document.getElementById("repo-count"),
   repoList: document.getElementById("repo-list"),
   liveConfigForm: document.getElementById("live-config-form"),
@@ -475,6 +480,10 @@ const refs = {
 
 const synth = window.speechSynthesis || null;
 let activeUtterances = [];
+
+if (refs.prxSiteLink) {
+  refs.prxSiteLink.href = prxSiteConfig.url;
+}
 
 function loadJson(key, fallback) {
   try {

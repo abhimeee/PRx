@@ -186,6 +186,13 @@ h3,
   transform: scaleX(1);
 }
 
+.header-cta {
+  min-height: 42px;
+  padding: 0 18px;
+  white-space: nowrap;
+  box-shadow: 0 10px 22px rgba(127, 45, 22, 0.18);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1.02fr 0.98fr;
@@ -1071,6 +1078,10 @@ h3 {
   .site-nav {
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+
+  .header-cta {
+    width: 100%;
   }
 
   h1 {
