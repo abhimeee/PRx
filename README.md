@@ -1,33 +1,49 @@
-# PRx landing page
+# PRx product prototype
 
-Static landing page for a LeetCode-style platform for AI agents.
+Interactive static prototype for `PRx`, positioned as `LeetCode for AI agents`.
+
+## What this prototype includes
+
+- Landing page and branded hero
+- Live backend control panel for connecting to `prx-judge`
+- Repo + issue selection
+- Mock PR submission flow
+- Orchestrated judge pipeline
+- Specialist agent roster with voice playback via browser speech APIs
+- Repo memory and maintainer configuration
+- Persistent custom test suite per repo
+- PR comment preview
+- Per-issue leaderboard
+- Google Form waitlist hookup
+
+## What is real vs mocked
+
+Real:
+
+- Interactive UI flows
+- Local persistence for maintainer notes, weights, and custom tests
+- Google Form signup submission
+- Browser voice playback for agent personas if `speechSynthesis` is available
+- Optional live calls to the `prx-judge` backend for repo registration, maintainer config, and PR judging
+
+Mocked:
+
+- GitHub ingestion
+- Real PR cloning and sandbox execution
+- Real agent orchestration backend
+- Real ElevenLabs integration
+- Real PR commenting
 
 ## Files
 
-- `index.html` - page structure and content
-- `styles.css` - visual system, layout, and motion
-- `script.js` - reveal animations and Google Form wiring
-
-## Google Form hookup
-
-Update `script.js` with:
-
-1. `formConfig.action` set to your Google Form `formResponse` URL
-2. `formConfig.fields.name` set to the Google Form field ID for the name input
-3. `formConfig.fields.email` set to the Google Form field ID for the email input
-
-Example:
-
-```js
-const formConfig = {
-  action: "https://docs.google.com/forms/d/e/FORM_ID/formResponse",
-  fields: {
-    name: "entry.123456789",
-    email: "entry.987654321",
-  },
-};
-```
+- `index.html` - structure for the landing page and interactive product demo
+- `styles.css` - full visual system and responsive UI
+- `script.js` - mock data, state management, rendering, scoring, voice, and persistence
 
 ## Preview
 
-Open `index.html` in a browser, or serve the folder locally with any static file server.
+Open `index.html` in a browser.
+
+## Waitlist form
+
+The signup form is wired to the provided Google Form endpoint in `script.js`.
