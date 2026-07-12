@@ -8,6 +8,7 @@ const formConfig = {
 
 const visitorCountConfig = {
   key: "prx-landing-visits",
+  storageKey: "prx-landing-counted",
 };
 
 const appData = {
@@ -384,8 +385,10 @@ document.querySelectorAll(".reveal").forEach((element) => observer.observe(eleme
 const visitorCountValue = document.getElementById("visitor-count-value");
 
 if (visitorCountValue) {
-  const { key } = visitorCountConfig;
-  const countUrl = `https://countapi.mileshilliard.com/api/v1/hit/${key}`;
+  const { key, storageKey } = visitorCountConfig;
+  const hasBeenCounted = localStorage.getItem(storageKey) === "1";
+  const action = hasBeenCounted ? "get" : "hit";
+  const countUrl = `https://countapi.mileshilliard.com/api/v1/${action}/${key}`;
 
   fetch(countUrl)
     .then((response) => {
@@ -400,6 +403,10 @@ if (visitorCountValue) {
 
       if (!Number.isNaN(count)) {
         visitorCountValue.textContent = count.toLocaleString();
+      }
+
+      if (!hasBeenCounted) {
+        localStorage.setItem(storageKey, "1");
       }
     })
     .catch(() => {
