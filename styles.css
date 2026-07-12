@@ -236,6 +236,7 @@ h3 {
 }
 
 .hero-text,
+.hero-tagline,
 .section-text,
 .issue-subtitle,
 .issue-card p,
@@ -261,6 +262,16 @@ h3 {
   max-width: 60ch;
   margin: 20px 0 0;
   font-size: 1.06rem;
+}
+
+.hero-tagline {
+  margin: 18px 0 0;
+  max-width: 28ch;
+  font-family: Georgia, "Iowan Old Style", serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text);
 }
 
 .hero-actions,

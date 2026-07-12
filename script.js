@@ -420,33 +420,7 @@ if (visitorCountValue) {
 
 const refs = {
   prxSiteLink: document.getElementById("prx-site-link"),
-  repoCount: document.getElementById("repo-count"),
-  repoList: document.getElementById("repo-list"),
-  liveConfigForm: document.getElementById("live-config-form"),
-  liveModeEnabled: document.getElementById("live-mode-enabled"),
-  liveModeBadge: document.getElementById("live-mode-badge"),
-  liveBackendUrl: document.getElementById("live-backend-url"),
-  liveRepoUrl: document.getElementById("live-repo-url"),
-  liveIssueNumber: document.getElementById("live-issue-number"),
-  liveHistoryLimit: document.getElementById("live-history-limit"),
-  registerLiveRepo: document.getElementById("register-live-repo"),
-  runLiveJudge: document.getElementById("run-live-judge"),
-  liveStatusMessage: document.getElementById("live-status-message"),
-  issueTitle: document.getElementById("issue-title"),
-  issueSubtitle: document.getElementById("issue-subtitle"),
-  issueBadges: document.getElementById("issue-badges"),
-  issueDescription: document.getElementById("issue-description"),
-  issueCriteria: document.getElementById("issue-criteria"),
-  issueCommands: document.getElementById("issue-commands"),
-  submissionForm: document.getElementById("submission-form"),
-  submissionMessage: document.getElementById("submission-message"),
-  submissionStatusBadge: document.getElementById("submission-status-badge"),
-  submissionScore: document.getElementById("submission-score"),
-  submissionScoreCaption: document.getElementById("submission-score-caption"),
-  scoreBreakdown: document.getElementById("score-breakdown"),
-  commentPreviewText: document.getElementById("comment-preview-text"),
-  copyComment: document.getElementById("copy-comment"),
-  runJudge: document.getElementById("run-judge"),
+  prxJudgeCta: document.getElementById("prx-judge-cta"),
   pipelineTrack: document.getElementById("pipeline-track"),
   pipelineBadge: document.getElementById("pipeline-badge"),
   agentGrid: document.getElementById("agent-grid"),
@@ -483,6 +457,10 @@ let activeUtterances = [];
 
 if (refs.prxSiteLink) {
   refs.prxSiteLink.href = prxSiteConfig.url;
+}
+
+if (refs.prxJudgeCta) {
+  refs.prxJudgeCta.href = prxSiteConfig.url;
 }
 
 function loadJson(key, fallback) {
@@ -1202,16 +1180,12 @@ function renderApp() {
     );
   }
 
-  renderLiveControls();
-  renderRepoList();
-  renderIssue();
   renderPipeline();
   renderAgents();
   renderMemory();
   renderMaintainerPanel();
   renderVerification();
   renderLeaderboard();
-  renderSubmission();
   renderTranscript();
   renderVerdict();
   renderSignupForm();
@@ -1592,7 +1566,6 @@ function playHuddle() {
       });
 
   if (!synth) {
-    refs.submissionMessage.textContent = "Speech playback is not supported in this browser.";
     return;
   }
 
@@ -1641,35 +1614,12 @@ document.addEventListener("click", (event) => {
   }
 });
 
-refs.submissionForm.addEventListener("submit", queueSubmission);
-refs.submissionForm.addEventListener(
-  "invalid",
-  () => {
-    refs.submissionMessage.textContent = "Add an agent name and PR URL first.";
-  },
-  true
-);
-refs.runJudge.addEventListener("click", runJudgeDemo);
-refs.maintainerForm.addEventListener("submit", saveMaintainerConfig);
-refs.addCustomTest.addEventListener("click", addCustomTest);
-refs.liveModeEnabled.addEventListener("change", () => {
-  syncLiveInputsIntoState();
-  state.live.statusMessage = useLiveMode()
-    ? "Live mode enabled. Register a repository to fetch real repo context."
-    : "Demo mode is active. Enable live mode to use the backend.";
-  renderApp();
-});
-refs.registerLiveRepo.addEventListener("click", () => {
-  void registerLiveRepo();
-});
-refs.runLiveJudge.addEventListener("click", () => {
-  void runLiveJudge();
-});
-refs.playHuddle.addEventListener("click", playHuddle);
-refs.stopHuddle.addEventListener("click", stopSpeech);
-refs.copyComment.addEventListener("click", copyComment);
+refs.playHuddle?.addEventListener("click", playHuddle);
+refs.stopHuddle?.addEventListener("click", stopSpeech);
+refs.maintainerForm?.addEventListener("submit", saveMaintainerConfig);
+refs.addCustomTest?.addEventListener("click", addCustomTest);
 
-refs.signupForm.addEventListener("submit", () => {
+refs.signupForm?.addEventListener("submit", () => {
   refs.formMessage.textContent = "Opening Google Form submission...";
 });
 
